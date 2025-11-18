@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-danger mb-4">Liste des Produits</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form action="/all" method="get" class="d-flex">
+                <input
+                        type="text"
+                        name="mc"
+                        class="form-control me-2"
+                        placeholder="Rechercher par mot clé..."
+                        aria-label="Search"
+                        th:value="${mc}"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                    Rechercher
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Quantite</th>
+            <th>
+                <form action="/add" method="get">
+                    <button type="submit" class="btn btn-primary">
+                        Ajouter Produit
+                    </button>
+                </form>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.nom}"></td>
+            <td th:text="${p.prix}"></td>
+            <td th:text="${p.quantite}"></td>
+            <td>
+                <form th:action="@{/delete/{id}(id=${p.id})}" method="post"  style="display:inline;">
+                    <button type="submit" class="btn btn-danger">
+                        Supprimer
+                    </button>
+                </form>
+                <form th:action="@{/edit/{id}(id=${p.id})}" method="get" style="display:inline;">
+                    <button type="submit" class="btn btn-warning">
+                        Modifier
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
