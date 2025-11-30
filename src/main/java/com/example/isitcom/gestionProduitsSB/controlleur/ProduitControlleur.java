@@ -1,6 +1,8 @@
 package com.example.isitcom.gestionProduitsSB.controlleur;
 
+import com.example.isitcom.gestionProduitsSB.entities.Categorie;
 import com.example.isitcom.gestionProduitsSB.entities.Produit;
+import com.example.isitcom.gestionProduitsSB.repository.CategorieRepository;
 import com.example.isitcom.gestionProduitsSB.service.ServiceProduit;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProduitControlleur {
     private ServiceProduit serviceProduit;
+    private CategorieRepository categorieRepository;
 
     @GetMapping("/all")
     public String allProduit(Model m, @RequestParam(name = "mc", defaultValue = "") String mc) {
@@ -39,6 +42,7 @@ public class ProduitControlleur {
     @GetMapping("/add")
     public String showAddForm(Model m) {
         m.addAttribute("produit", new Produit());
+        m.addAttribute("categorie", categorieRepository.findAll());
         return "ajouterProduit";
     }
 
@@ -52,6 +56,7 @@ public class ProduitControlleur {
     public String showEditForm(@PathVariable Long id, Model m) {
         Produit p = serviceProduit.getProduitById(id);
         m.addAttribute("produit", p);
+        m.addAttribute("categorie", categorieRepository.findAll());
         return "modifierProduit";
     }
 }

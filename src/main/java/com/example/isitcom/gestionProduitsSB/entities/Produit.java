@@ -1,13 +1,10 @@
 package com.example.isitcom.gestionProduitsSB.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -19,4 +16,6 @@ public class Produit {
     private String nom;
     private Double prix;
     private Integer quantite;
+    @ManyToOne
+    private Categorie categorie;
 }

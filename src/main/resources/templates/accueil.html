@@ -35,6 +35,7 @@
             <th>Nom</th>
             <th>Prix</th>
             <th>Quantite</th>
+            <th>Categorie</th>
             <th>
                 <form action="/add" method="get">
                     <button type="submit" class="btn btn-primary">
@@ -50,6 +51,7 @@
             <td th:text="${p.nom}"></td>
             <td th:text="${p.prix}"></td>
             <td th:text="${p.quantite}"></td>
+            <td th:text="${p.categorie == null ? 'categorie' : p.categorie.nomCat}"></td>
             <td>
                 <form th:action="@{/delete/{id}(id=${p.id})}" method="post"  style="display:inline;">
                     <button type="submit" class="btn btn-danger">

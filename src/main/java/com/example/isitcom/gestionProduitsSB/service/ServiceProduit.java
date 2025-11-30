@@ -17,8 +17,9 @@ public class ServiceProduit implements IServiceProduit{
     }*/
 
     @Override
-    public void saveProduit(Produit p) {
+    public Produit saveProduit(Produit p) {
         produitRepository.save(p);
+        return p;
     }
 
     @Override

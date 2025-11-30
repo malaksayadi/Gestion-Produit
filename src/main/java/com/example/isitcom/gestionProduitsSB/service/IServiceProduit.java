@@ -5,7 +5,7 @@ import com.example.isitcom.gestionProduitsSB.entities.Produit;
 import java.util.List;
 
 public interface IServiceProduit {
-    public void saveProduit(Produit p);
+    public Produit saveProduit(Produit p);
     public Produit getProduitById(Long id);
     public void deleteProduit(Long id);
     public List<Produit> getAllProduits();
